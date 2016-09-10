@@ -101,14 +101,18 @@ newData_weekday <- subset(newData, newData$weekday == "Weekday")
 newData_weekend <- subset(newData, newData$weekday == "Weekend")
  mean_weekday <- tapply(newData_weekday$steps, newData_weekday$interval, mean)
  mean_weekend <- tapply(newData_weekend$steps, newData_weekend$interval, mean)
+ ```
  
+### Now we'll plot the graph
+
+```{r ,echo =TRUE}
+wd <- data.frame(interval = unique(newData_weekday$interval), avg = as.numeric(mean_weekday), day = rep("Weekday", length(mean_weekday)))
+
+wnd <- data.frame(interval = unique(newData_weekend$interval), avg = as.numeric(mean_weekend), day = rep("Weekend", length(mean_weekend)))
+
+final <- rbind(wd,wnd)
+library(lattice)
+
+ xyplot(avg ~ interval | day, data = final , layout = c(1,2), type = "l", ylab = "No. of Steps")
+ ```
  
-
-
-
-
-
-
-
-
-
