@@ -71,10 +71,14 @@ newData <- data
   ```
   
 #### Now We will draw a histogram of steps taken with the new values 
-    ```{r , echo =TRUE}
+
+
+```{r , echo =TRUE}
     sm2 <- tapply(newData$steps, newData$date, sum, na.rm = TRUE)
     hist(sm2 , xlab ="Total Steps taken per Day", main = "Histogram of total steps taken per Day")
-    ```
+```
+
+
 #### We will calculate the mean and median of the new data set with no misssing values
 
   ```{r ,echo = TRUE}
