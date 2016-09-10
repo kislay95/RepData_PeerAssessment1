@@ -8,14 +8,44 @@ output:
 
 ## Loading and preprocessing the data
 
+```{r loading, echo = TRUE}
+data <- read.csv("activity.csv", header = TRUE, sep = ",")
+```
+
+ 
+### Converting Date to date format and Interval to factor
+```{r convert, echo = TRUE}
+data$date <- as.Date(data$date, format = "%Y-%m-%d")
+data$interval <- factor(data$interval)
+```
 
 
 ## What is mean total number of steps taken per day?
 
+### First find the sum of steps taken every day and plot the graph
+
+```{r , echo = TRUE}
+sm <- tapply(data$steps, data$date, sum, na.rm = TRUE)
+hist(sm, xlab = "no of steps taken per Day", main = "Histogram Of Steps taken per Day")
+```
+### For Mean and Median of No of Steps taken per day
+
+```{r ,echo = TRUE}
+sm_mean <- round(mean(sm))
+sm_median <- round(median(sm))
+print(c("The mean is " , sm_mean))
+print(c("The median is ", sm_median))
+```
 
 
 ## What is the average daily activity pattern?
 
+### We have to calculate the mean of steps taken daily 
+
+```{r interval , echo = TRUE}
+mn <- tapply(data$steps, data$interval, mean, na.rm =TRUE)
+plot(mn ~ unique(data$interval), typle = "l", xlab = "5 Min intervals")
+```
 
 
 ## Imputing missing values
