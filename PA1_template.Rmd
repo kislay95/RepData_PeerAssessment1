@@ -86,3 +86,29 @@ newData <- data
     
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+### We'll add new column to the data set containing weekday or weekend
+
+```{r , echo = TRUE}
+newData$weekday <- c("Weekday")
+newData[weekdays(as.Date(newData[,2])) %in% c("Saturday", "Sunday", "saturday", "sunday"),][4] <- c("Weekend")
+table(newData$weekday == "Weekend")
+
+newData$weekday <- factor(newData$weekday)
+
+newData_weekday <- subset(newData, newData$weekday == "Weekday")
+newData_weekend <- subset(newData, newData$weekday == "Weekend")
+ mean_weekday <- tapply(newData_weekday$steps, newData_weekday$interval, mean)
+ mean_weekend <- tapply(newData_weekend$steps, newData_weekend$interval, mean)
+ 
+ 
+
+
+
+
+
+
+
+
+
