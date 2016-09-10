@@ -47,13 +47,42 @@ mn <- tapply(data$steps, data$interval, mean, na.rm =TRUE)
 plot(mn ~ unique(data$interval), typle = "l", xlab = "5 Min intervals")
 ```
 ### For Max no. of steps taken on a particular day. 
-#### the following code will show the day on which maximum steps were take and how many.
+
+
+#### The following code will show the day on which maximum steps were take and how many.
 ```{r , echo = TRUE}
 mn[which.max(mn)]
 ```
 
 ## Imputing missing values
 
+### For the missing values we will replace it with the mean of that particular day.
+#### We will create a new data set newData.
 
+```{r , echo =TRUE}
+newData <- data
+  for(i in 1:nrow(data))
+  { 
+    if(is.na(data$steps[i]))
+    {
+    newData$steps[i] <- mn[[as.charachter(data[i,"interval"])]]
+    }
+  }
+  ```
+  
+#### Now We will draw a histogram of steps taken with the new values 
+    ```{r , echo =TRUE}
+    sm2 <- tapply(newData$steps, newData$date, sum, na.rm = TRUE)
+    hist(sm2 , xlab ="Total Steps taken per Day", main = "Histogram of total steps taken per Day")
+    ```
+#### We will calculate the mean and median of the new data set with no misssing values
+
+  ```{r ,echo = TRUE}
+  sm2_mean <- round(mean(sm2))
+  sm2_median <- round(median(sm2))
+  print(c("The new mean is " , sm2_mean))
+  print(c("The new median is ", sm2_median))
+  ```  
+    
 
 ## Are there differences in activity patterns between weekdays and weekends?
