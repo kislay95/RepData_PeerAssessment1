@@ -46,7 +46,11 @@ print(c("The median is ", sm_median))
 mn <- tapply(data$steps, data$interval, mean, na.rm =TRUE)
 plot(mn ~ unique(data$interval), typle = "l", xlab = "5 Min intervals")
 ```
-
+### For Max no. of steps taken on a particular day. 
+#### the following code will show the day on which maximum steps were take and how many.
+```{r , echo = TRUE}
+mn[which.max(mn)]
+```
 
 ## Imputing missing values
 
