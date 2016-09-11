@@ -65,10 +65,10 @@ newData <- data
   { 
     if(is.na(data$steps[i]))
     {
-    newData$steps[i] <- mn[[as.charachter(data[i,"interval"])]]
+    newData$steps[i] <- mn[[as.character(data[i,"interval"])]]
     }
   }
-  ```
+```
   
 #### Now We will draw a histogram of steps taken with the new values 
 
